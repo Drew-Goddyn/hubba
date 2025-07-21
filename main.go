@@ -234,8 +234,14 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		renderGridHeight := m.simHeight - 8 // Must match renderSimulation grid calculation
 		m.physicsEngine.UpdateBounds(float64(m.simWidth), float64(renderGridHeight))
 
-		// Immediately clamp all entities to new bounds to prevent rendering crashes
-		m.clampEntitiesToBounds(float64(m.simWidth), float64(renderGridHeight))
+		// Handle entities at new boundaries naturally (bounce instead of clamp)
+		m.handleBoundaryResize(float64(m.simWidth), float64(renderGridHeight))
+
+		// Force immediate animation update to sync with new boundaries
+		entities := m.entityManager.GetEntities()
+		for _, entity := range entities {
+			entity.UpdateAnimation(m.animationEngine)
+		}
 
 		// Update control panel dimensions and responsive mode
 		var ctrlContentWidth int
@@ -555,7 +561,7 @@ func (m Model) View() string {
 	} else {
 		// Normal usage: smooth responsive width without hard breakpoints
 		// Leave enough margin for ANSI sequences, borders, and padding
-		margin := 8 // Conservative margin for borders and ANSI sequences
+		margin := 4 // Optimized margin for borders and ANSI sequences
 		simStyleWidth = max(20, m.termWidth-margin) // Smooth scaling without jumps
 	}
 	simulationPane := simulationStyle.
@@ -579,7 +585,7 @@ func (m Model) View() string {
 	} else {
 		// Normal usage: smooth responsive width without hard breakpoints
 		// Leave enough margin for ANSI sequences, borders, and padding
-		margin := 8 // Conservative margin for borders and ANSI sequences
+		margin := 4 // Optimized margin for borders and ANSI sequences
 		ctrlStyleWidth = max(20, m.termWidth-margin) // Smooth scaling without jumps
 	}
 	controlPane := controlStyle.
@@ -981,6 +987,54 @@ func (m Model) renderMinimalControls() string {
 	lines = append(lines, fmt.Sprintf("FPS: %.1f", m.currentFPS))
 
 	return strings.Join(lines, "\n")
+}
+
+// handleBoundaryResize smoothly handles entities during boundary changes
+// Makes entities bounce naturally off moving walls instead of harsh clamping
+func (m *Model) handleBoundaryResize(maxWidth, maxHeight float64) {
+	entities := m.entityManager.GetEntities()
+	for _, entity := range entities {
+		x, y := entity.GetPosition()
+		vx, vy := entity.GetVelocity()
+		
+		// Check if entity is outside new bounds and handle naturally
+		newX, newY := x, y
+		newVX, newVY := vx, vy
+		
+		// Handle horizontal boundary changes
+		if x >= maxWidth-1 {
+			newX = maxWidth - 1.5 // Small offset to prevent sticking
+			if vx > 0 {
+				newVX = -math.Abs(vx) * 0.7 // Bounce with some damping
+			}
+		} else if x < 0 {
+			newX = 0.5
+			if vx < 0 {
+				newVX = math.Abs(vx) * 0.7
+			}
+		}
+		
+		// Handle vertical boundary changes  
+		if y >= maxHeight-1 {
+			newY = maxHeight - 1.5
+			if vy > 0 {
+				newVY = -math.Abs(vy) * 0.7
+			}
+		} else if y < 0 {
+			newY = 0.5
+			if vy < 0 {
+				newVY = math.Abs(vy) * 0.7
+			}
+		}
+		
+		// Apply changes if needed
+		if newX != x || newY != y {
+			entity.SetImmediatePosition(newX, newY)
+		}
+		if newVX != vx || newVY != vy {
+			entity.SetVelocity(newVX, newVY)
+		}
+	}
 }
 
 // clampEntitiesToBounds ensures all entities are within the current display bounds
