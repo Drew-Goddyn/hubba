@@ -1,0 +1,11 @@
+# Task ID: 1
+# Title: Project Setup and Core Layout
+# Status: done
+# Dependencies: None
+# Priority: high
+# Description: Initialize the Go project, set up dependencies (Bubble Tea, Lip Gloss), and implement the basic split-screen layout.
+# Details:
+Create a main Bubble Tea application with a model that defines a 70/30 vertical split for the simulation and control panes. Use Lip Gloss for styling the borders and layout. Ensure the layout is responsive to terminal resizing.
+
+# Test Strategy:
+Run the application and visually verify the split-screen layout. Resize the terminal window to confirm responsiveness. Check for clear borders between panes.

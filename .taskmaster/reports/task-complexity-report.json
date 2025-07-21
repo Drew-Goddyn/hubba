@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2025-07-17T05:46:46.960Z",
+		"tasksAnalyzed": 10,
+		"totalTasks": 10,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": false
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Project Setup and Core Layout",
+			"complexityScore": 3,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Project Setup and Core Layout' into 3 subtasks. The subtasks should cover initializing the Go module and adding dependencies, creating the main Bubble Tea model with its core methods (Init, Update, View), and implementing the responsive 70/30 vertical split layout using Lip Gloss.",
+			"reasoning": "This is a foundational task with a low complexity. It involves boilerplate setup and basic layout logic. Breaking it into setup, model creation, and layout implementation provides a clear, sequential workflow."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Implement Entity Management System",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Implement Entity Management System' into 3 subtasks. The first subtask should be to define the `Entity` interface with necessary methods for position, velocity, and rendering. The next two subtasks should be to create the concrete `Sphere` and `Sprite` structs that implement this interface.",
+			"reasoning": "This task involves data modeling and abstraction using interfaces, which is slightly more complex than setup. Separating the interface definition from the concrete implementations is a logical way to structure the work."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Develop Basic Physics Engine",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Develop Basic Physics Engine' into 3 subtasks. The subtasks should cover applying a constant gravity force to all entities, updating entity positions based on their velocity in each tick, and implementing simple boundary checks to keep entities within the simulation pane.",
+			"reasoning": "This task introduces algorithmic logic (physics calculations) and state updates within the application loop. The complexity comes from integrating this logic correctly. The breakdown separates force application, movement, and boundary interaction."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Create ASCII Rendering System for Entities",
+			"complexityScore": 4,
+			"recommendedSubtasks": 2,
+			"expansionPrompt": "Expand the task 'Create ASCII Rendering System for Entities' into 2 subtasks. The first subtask should focus on creating a function that takes an entity and returns a styled string (e.g., a colored 'O') using Lip Gloss. The second subtask should be to update the main `View` method to iterate through all entities and render them at their correct positions.",
+			"reasoning": "The complexity lies in mapping simulation coordinates to terminal cells and using the Lip Gloss API. The task naturally splits into two parts: defining how a single entity looks, and then rendering all entities in the correct places."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Integrate Harmonica for Smooth Animation",
+			"complexityScore": 7,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Integrate Harmonica for Smooth Animation' into 3 subtasks. The first subtask is to add the Harmonica library and modify the `Entity` model to include a spring for its position. The second is to refactor the physics engine to update the spring's target value instead of the position directly. The third is to implement a Bubble Tea `Tick` to drive the Harmonica updates.",
+			"reasoning": "This task is complex as it requires refactoring the core physics and update loop to integrate a new animation library. The breakdown separates dependency setup, logic refactoring, and implementing the new animation driver (the tick)."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Build Interactive Control Pane UI",
+			"complexityScore": 4,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Build Interactive Control Pane UI' into 3 subtasks. The first subtask is to create a new, separate Bubble Tea model for the control pane. The second is to add and configure button components from the Bubbles library. The third is to integrate this new model into the main application's layout and message flow.",
+			"reasoning": "This task involves learning and using a component library (Bubbles). Creating a separate model for the controls is good practice and forms a logical subtask, followed by populating it with components and integrating it back into the main view."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Implement Core Control Logic and Shortcuts",
+			"complexityScore": 6,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Implement Core Control Logic and Shortcuts' into 3 subtasks. The first is to implement the logic for adding new entities and clearing all entities. The second is to implement the pause/resume and reset logic. The third is to map keyboard shortcuts ('a', 's', 'c', 'p', 'r') to trigger these same actions.",
+			"reasoning": "The complexity comes from wiring the UI to the simulation state via message passing and key handling. Grouping the actions (e.g., entity manipulation vs. simulation control) and handling keyboard input separately creates manageable chunks."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implement Collision Detection",
+			"complexityScore": 8,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Implement Collision Detection' into 3 subtasks. The first subtask is to implement bouncing collisions with the simulation pane boundaries. The second is to implement the detection logic for entity-entity collisions. The third is to implement the collision response, calculating the change in velocity for colliding entities.",
+			"reasoning": "This is the most algorithmically complex task. Separating boundary collision from the more difficult entity-entity collision is a good first step. Further splitting entity collision into detection and response isolates the distinct mathematical challenges."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement Parameter Controls",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Expand the task 'Implement Parameter Controls' into 3 subtasks. The first is to add new UI components like sliders or text inputs to the control pane. The second is to have these components send messages to the main model when their values change. The third is to update the main model to use these new parameter values.",
+			"reasoning": "This task builds upon the control pane UI and logic. The complexity is moderate. The breakdown follows a standard UI development pattern: create the view, handle the events, and update the model state."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Final Polish, Testing, and Documentation",
+			"complexityScore": 7,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Expand the task 'Final Polish, Testing, and Documentation' into 4 subtasks. The subtasks should be: 1) A comprehensive visual style refinement. 2) Performance profiling and optimization. 3) Adding missing unit tests for critical logic. 4) Writing a complete README.md file.",
+			"reasoning": "This is a broad, high-effort task that touches the entire codebase. Its complexity comes from its scope. Breaking it down into distinct quality assurance activities (styling, performance, testing, documentation) makes it tractable."
+		}
+	]
+}

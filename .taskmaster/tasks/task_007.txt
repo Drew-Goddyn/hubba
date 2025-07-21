@@ -1,0 +1,11 @@
+# Task ID: 7
+# Title: Implement Core Control Logic and Shortcuts
+# Status: done
+# Dependencies: 2, 6
+# Priority: high
+# Description: Wire up the control pane buttons and keyboard shortcuts to manipulate the simulation.
+# Details:
+Implement the logic for each button: 'Add Sphere'/'Add Sprite' should create a new entity. 'Clear All' removes all entities. 'Pause/Resume' toggles physics updates. 'Reset' clears and re-initializes. Map keys 'a', 's', 'c', 'p', 'r' to these actions.
+
+# Test Strategy:
+Press each button and corresponding keyboard shortcut. Verify the simulation state changes as expected (e.g., entities are added/removed, simulation pauses/resumes).

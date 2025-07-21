@@ -1,0 +1,160 @@
+# Task ID: 10
+# Title: Final Polish, Testing, and Documentation
+# Status: in-progress
+# Dependencies: 8, 9
+# Priority: medium
+# Description: Perform comprehensive testing, optimize performance, improve styling, and write final documentation.
+# Details:
+Refine visual styles with Lip Gloss. Profile the application to identify and fix performance bottlenecks, ensuring it handles 100+ entities smoothly. Write unit tests for physics and entity logic. Create a comprehensive README.md.
+
+# Test Strategy:
+Run the application with a large number of entities (100+) to check for lag or high CPU usage. Review the code for clarity and adherence to Go best practices. Have another developer follow the README to build and run the project.
+
+# Subtasks:
+## 1. Performance Testing & Optimization [done]
+### Dependencies: None
+### Description: Test app performance with 100+ entities and optimize bottlenecks
+### Details:
+- Create performance test scenario with 100+ entities
+- Profile CPU usage and memory consumption  
+- Identify bottlenecks in physics calculations, rendering, or animation
+- Optimize entity management and collision detection
+- Ensure smooth 60 FPS even with many entities
+- Add performance monitoring tools
+
+## 2. Visual Polish & Styling [done]
+### Dependencies: None
+### Description: Improve visual appearance and polish UI elements
+### Details:
+- Enhance color schemes and contrast
+- Improve border styles and spacing
+- Polish button hover/focus states
+- Add visual feedback for parameter changes
+- Improve status displays and formatting
+- Add visual flourishes and animations
+- Ensure consistent styling across all UI elements
+
+## 3. Comprehensive Unit Testing [done]
+### Dependencies: None
+### Description: Write thorough unit tests for all core functionality
+### Details:
+- Test physics engine functions (gravity, collisions, boundaries)
+- Test entity management (add, remove, update entities)
+- Test animation system integration
+- Test parameter controls (gravity, size, color cycling)
+- Test control panel interactions
+- Add edge case testing (empty simulation, max entities, etc.)
+- Ensure test coverage > 80%
+- Add integration tests for complete workflows
+
+## 4. Comprehensive Documentation [done]
+### Dependencies: None
+### Description: Create detailed README and documentation
+### Details:
+- Write comprehensive README.md with:
+  * Project description and features
+  * Installation and build instructions  
+  * Usage guide and controls
+  * Architecture overview
+  * Screenshots/GIFs of the app in action
+- Add inline code documentation
+- Document all public APIs and interfaces
+- Create troubleshooting section
+- Add development setup guide
+- Include performance tips and limitations
+
+## 5. Code Quality & Best Practices [done]
+### Dependencies: None
+### Description: Review and improve code quality following Go best practices
+### Details:
+- Run go vet, golint, and gofmt on all code
+- Review code for Go idioms and best practices
+- Optimize imports and remove unused code
+- Add proper error handling where missing
+- Improve variable and function naming consistency  
+- Add package-level documentation
+- Ensure thread safety where needed
+- Review for potential memory leaks
+- Add build constraints and tags if needed
+
+## 6. Responsive Layout & Zoom Adaptivity [done]
+### Dependencies: None
+### Description: Improve app responsiveness and layout adaptation for different terminal sizes and zoom levels
+### Details:
+- Implement adaptive control panel sizing based on terminal dimensions
+- Add breakpoints for different screen sizes (small, medium, large terminals)
+- Optimize control panel layout to use less vertical space at higher zoom levels
+- Add responsive button arrangement (horizontal vs vertical layouts)
+- Implement smart text truncation and compact display modes
+- Add terminal size detection and adaptive UI scaling
+- Ensure simulation area gets priority for space allocation
+- Test across different zoom levels and terminal window sizes
+
+## 7. Fix Missing Entity Count Display [done]
+### Dependencies: None
+### Description: Add entity count display to the UI so users can see how many entities are currently in the simulation
+### Details:
+The UI tests revealed that users cannot see the current number of entities in the simulation. Need to add "Entities: X" display to the UI, likely in the status area.
+
+## 8. Fix Responsive Layout for Small Terminals [done]
+### Dependencies: None
+### Description: Improve responsive layout to handle narrow terminal widths without content overflow
+### Details:
+UI tests show that content overflows on terminals narrower than expected width. Need to implement proper responsive layout that truncates or wraps content appropriately for small screens.
+
+## 9. Add FPS Display to UI [done]
+### Dependencies: None
+### Description: Add FPS (frames per second) display to show performance information to users
+### Details:
+UI tests expect an FPS display that currently doesn't exist. Users should be able to see the current frame rate to understand performance, especially useful during performance testing.
+
+## 10. Fix UI Content Width Management [pending]
+### Dependencies: None
+### Description: Ensure all UI content respects terminal width boundaries and doesn't overflow
+### Details:
+Multiple UI tests fail due to content lines being longer than terminal width. Need to implement proper width management across all UI components to prevent overflow and ensure clean display on any terminal size.
+
+## 11. Fix Critical UI Test Failures [in-progress]
+### Dependencies: None
+### Description: Fix multiple failing UI tests related to button display and keyboard shortcuts
+### Details:
+Multiple UI tests are failing due to inconsistent button display and keyboard shortcut functionality:
+
+**TestCompleteUserWorkflowValidation Failures:**
+- Pause button not showing "Pause" text when simulation is not paused (snapshots 0, 1, 2)
+- Resume button not showing "Resume" text when simulation is paused (snapshots 3, 4)
+- Entity count display issues in UI snapshots 1-4
+
+**TestKeyboardAccessibilityComprehensive Failures:**
+- 'c' (clear) keyboard shortcut not causing observable UI changes
+- 'x' (color cycle) keyboard shortcut not causing observable UI changes
+
+**Root Causes Identified:**
+1. Pause/Resume button text inconsistency between different rendering modes (renderTestCompatibleControls vs renderMinimalControls vs full control panel)
+2. The control panel UpdatePauseButton functionality may not be called consistently
+3. Parameter changes (color cycling) not being reflected in UI display immediately
+4. Clear action may not be triggering UI refresh properly
+
+**Technical Details:**
+- Tests run with 80x24 terminal size
+- Uses CaptureUISnapshot to detect state/UI changes
+- Expects observable changes in ViewOutput when keyboard shortcuts are pressed
+- Button text must match pause state (Pause vs Resume)
+
+**Files Involved:**
+- main.go (keyboard handling, UI rendering)
+- controls.go (button state management)  
+- ui_test.go (test expectations)
+
+**Expected Fix Areas:**
+1. Ensure consistent pause/resume button text across all rendering modes
+2. Fix color cycling to be immediately visible in UI
+3. Fix clear action to show immediate UI changes
+4. Verify parameter display updates work correctly
+
+## 12. Fix TestAnimationProgressValidation Failure [pending]
+### Dependencies: None
+### Description: Fix failing UI test that expects animation to cause visual changes over time
+### Details:
+TestAnimationProgressValidation is failing with error "Animation should cause visual changes over time". The test adds an entity, simulates time passing with multiple tick messages, and expects the UI output to change between initial and final snapshots. Need to investigate why animations aren't causing observable UI changes in the test environment.
+

@@ -1,0 +1,11 @@
+# Task ID: 2
+# Title: Implement Entity Management System
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Create a polymorphic system to manage different types of simulation entities (Spheres, Sprites).
+# Details:
+Define an `Entity` interface and concrete structs for `Sphere` and `Sprite`. Each entity should have properties for position, velocity, size, color, and type. The main model should hold a slice of these entities.
+
+# Test Strategy:
+Write unit tests for creating, adding, and removing entities from the manager. Verify that entity properties are correctly initialized.

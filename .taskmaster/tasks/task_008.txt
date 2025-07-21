@@ -1,0 +1,11 @@
+# Task ID: 8
+# Title: Implement Collision Detection
+# Status: done
+# Dependencies: 3, 5
+# Priority: medium
+# Description: Add collision detection between entities and between entities and the simulation boundaries.
+# Details:
+Implement two types of collision: 1) Boundary collision, where entities bounce off the walls of the simulation pane. 2) Entity-entity collision, where entities bounce off each other, conserving momentum. Use Harmonica springs to create a bounce effect.
+
+# Test Strategy:
+Write unit tests for collision detection logic. Visually test by creating multiple entities and observing their interactions with each other and the walls. They should bounce realistically.

@@ -1,0 +1,11 @@
+# Task ID: 3
+# Title: Develop Basic Physics Engine
+# Status: done
+# Dependencies: 2
+# Priority: high
+# Description: Implement the core physics logic for entity movement, including gravity and velocity.
+# Details:
+Create a physics package. In the application's `Update` loop, iterate through entities and apply a constant gravity force to their velocity. Update each entity's position based on its velocity. Implement boundary checks to keep entities within the simulation pane.
+
+# Test Strategy:
+Write unit tests for the physics calculations (e.g., applying gravity over time). Visually inspect the simulation to see if entities fall downwards and move according to their velocity.

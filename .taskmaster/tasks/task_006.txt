@@ -1,0 +1,11 @@
+# Task ID: 6
+# Title: Build Interactive Control Pane UI
+# Status: done
+# Dependencies: 1
+# Priority: high
+# Description: Create the user interface in the control pane using the Bubbles library for components.
+# Details:
+Add interactive buttons for 'Add Sphere', 'Add Sprite', 'Clear All', 'Pause/Resume', and 'Reset'. Lay them out horizontally in the bottom 30% of the screen. This UI can be a separate Bubble Tea model.
+
+# Test Strategy:
+Visually inspect the control pane to ensure all buttons are present and correctly labeled. The application should not crash when interacting with the (currently non-functional) buttons.

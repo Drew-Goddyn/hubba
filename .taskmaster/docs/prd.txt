@@ -1,0 +1,135 @@
+# TUI Simulation App - Product Requirements Document
+
+## Project Overview
+Build a terminal-based simulation application using Bubble Tea TUI framework and Harmonica animation library. The app will feature a split-screen interface with a simulation area and interactive controls.
+
+## Target Audience
+- Developers interested in TUI applications
+- Users who want to experiment with simple physics simulations
+- Anyone interested in terminal-based interactive applications
+
+## Technical Stack
+- **Language**: Go
+- **TUI Framework**: Bubble Tea (github.com/charmbracelet/bubbletea)
+- **Animation Library**: Harmonica (github.com/charmbracelet/harmonica)
+- **Styling**: Lip Gloss (for terminal styling and layout)
+- **Additional Libraries**: 
+  - Bubbles (for common UI components like buttons)
+  - Standard Go libraries for math and rendering
+
+## Core Features
+
+### 1. Application Layout
+- **Split Screen Design**: 
+  - Top 70% of screen: Simulation pane
+  - Bottom 30% of screen: Control pane
+- **Responsive Layout**: Adapts to different terminal sizes
+- **Border Styling**: Clear visual separation between panes
+
+### 2. Simulation Pane
+- **Rendering Area**: ASCII-based 2D simulation space
+- **Entities**: Support for multiple types of simulated objects:
+  - Spheres/circles (rendered as 'O' or '●')
+  - Sprites (rendered as custom ASCII characters)
+  - Different sizes and colors
+- **Physics Simulation**:
+  - Basic gravity effects
+  - Collision detection between entities
+  - Boundary collision (walls of simulation area)
+  - Simple momentum and velocity
+- **Real-time Updates**: Smooth animation using Harmonica springs
+- **Status Display**: Show simulation stats (entity count, FPS, etc.)
+
+### 3. Control Pane
+- **Button Interface**: Interactive buttons using Bubbles components
+  - "Add Sphere" - adds a new sphere at random position
+  - "Add Sprite" - adds a custom sprite entity
+  - "Clear All" - removes all entities
+  - "Pause/Resume" - toggles simulation
+  - "Reset" - resets simulation to initial state
+- **Parameter Controls**:
+  - Gravity strength slider/input
+  - Entity size selection
+  - Color selection for new entities
+- **Keyboard Shortcuts**: 
+  - 'a' for add sphere
+  - 's' for add sprite
+  - 'c' for clear
+  - 'p' for pause/resume
+  - 'r' for reset
+  - 'q' or Ctrl+C for quit
+
+### 4. Animation System
+- **Harmonica Integration**: Use spring animations for:
+  - Entity movement and physics
+  - Smooth transitions for UI state changes
+  - Bounce effects on collisions
+- **Frame Rate**: Target 30-60 FPS for smooth animation
+- **Performance Optimization**: Efficient rendering to prevent flicker
+
+### 5. Entity Management
+- **Entity Types**: Polymorphic entity system
+- **Properties**: Each entity has position, velocity, size, color, type
+- **Lifecycle**: Entities can be added, removed, and modified
+- **Interaction**: Basic mouse/keyboard interaction (if terminal supports)
+
+## Technical Requirements
+
+### Architecture
+- **MVC Pattern**: Following Bubble Tea's Model-View-Update architecture
+- **Modular Design**: Separate packages for:
+  - Simulation engine
+  - Entity management
+  - UI components
+  - Physics calculations
+
+### Performance
+- **Memory Efficient**: Handle up to 100+ entities without lag
+- **CPU Optimized**: Efficient collision detection and rendering
+- **Terminal Compatibility**: Works on major terminal emulators
+
+### Code Quality
+- **Go Modules**: Proper dependency management
+- **Testing**: Unit tests for physics and entity logic
+- **Documentation**: Clear code comments and README
+- **Error Handling**: Graceful error handling and recovery
+
+## Implementation Phases
+
+### Phase 1: Core Framework
+- Set up Bubble Tea application structure
+- Implement basic split-screen layout
+- Add keyboard input handling
+- Create basic model and update logic
+
+### Phase 2: Simulation Engine
+- Implement entity system
+- Add basic physics (gravity, velocity)
+- Create rendering system for entities
+- Integrate Harmonica for smooth animations
+
+### Phase 3: Controls and Interaction
+- Build control pane with buttons
+- Add entity creation functionality
+- Implement simulation controls (pause, reset, clear)
+- Add parameter adjustment capabilities
+
+### Phase 4: Enhanced Features
+- Improve collision detection
+- Add visual effects and styling
+- Optimize performance
+- Add configuration options
+
+### Phase 5: Polish and Testing
+- Comprehensive testing
+- Performance optimization
+- Documentation and examples
+- Bug fixes and refinements
+
+## Success Criteria
+- Smooth, responsive TUI that works in standard terminals
+- Intuitive controls that are easy to learn
+- Stable physics simulation with realistic behavior
+- Good performance with multiple entities
+- Clean, maintainable code following Go best practices
+- Comprehensive documentation and examples 

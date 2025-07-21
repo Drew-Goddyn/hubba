@@ -1,0 +1,11 @@
+# Task ID: 4
+# Title: Create ASCII Rendering System for Entities
+# Status: done
+# Dependencies: 2
+# Priority: high
+# Description: Develop the rendering logic to display entities within the simulation pane.
+# Details:
+In the `View` method for the simulation pane, iterate through all entities and render them at their respective positions. Use 'O' or '●' for spheres and custom characters for sprites. Apply colors using Lip Gloss based on entity properties.
+
+# Test Strategy:
+Add a few static entities to the model and verify they are rendered correctly in the simulation pane. Check if colors and characters match the entity properties.

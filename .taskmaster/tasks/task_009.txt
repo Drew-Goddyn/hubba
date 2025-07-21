@@ -1,0 +1,11 @@
+# Task ID: 9
+# Title: Implement Parameter Controls
+# Status: done
+# Dependencies: 7
+# Priority: low
+# Description: Add UI controls for adjusting simulation parameters like gravity, entity size, and color.
+# Details:
+In the control pane, add components (sliders, inputs, or selectors) to modify the gravity strength, the size of newly created entities, and the color of newly created entities. These controls should update the main model's state.
+
+# Test Strategy:
+Adjust the gravity slider and observe changes in entity acceleration. Change the size/color selectors and add new entities to verify they are created with the selected properties.

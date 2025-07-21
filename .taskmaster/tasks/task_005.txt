@@ -1,0 +1,11 @@
+# Task ID: 5
+# Title: Integrate Harmonica for Smooth Animation
+# Status: done
+# Dependencies: 3, 4
+# Priority: medium
+# Description: Use the Harmonica library to animate entity movements for a smooth, non-flickering display.
+# Details:
+Replace direct position updates in the physics engine with Harmonica spring animations. The physics engine will set the target position, and Harmonica will handle the interpolation. Aim for a target frame rate of 30-60 FPS using a Bubble Tea `Tick` message.
+
+# Test Strategy:
+Visually compare the animation with and without Harmonica. The movement should be noticeably smoother. Monitor an FPS counter to ensure performance targets are met.

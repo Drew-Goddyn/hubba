@@ -1,0 +1,252 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Project Setup and Core Layout",
+        "description": "Initialize the Go project, set up dependencies (Bubble Tea, Lip Gloss), and implement the basic split-screen layout.",
+        "details": "Create a main Bubble Tea application with a model that defines a 70/30 vertical split for the simulation and control panes. Use Lip Gloss for styling the borders and layout. Ensure the layout is responsive to terminal resizing.",
+        "testStrategy": "Run the application and visually verify the split-screen layout. Resize the terminal window to confirm responsiveness. Check for clear borders between panes.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement Entity Management System",
+        "description": "Create a polymorphic system to manage different types of simulation entities (Spheres, Sprites).",
+        "details": "Define an `Entity` interface and concrete structs for `Sphere` and `Sprite`. Each entity should have properties for position, velocity, size, color, and type. The main model should hold a slice of these entities.",
+        "testStrategy": "Write unit tests for creating, adding, and removing entities from the manager. Verify that entity properties are correctly initialized.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Develop Basic Physics Engine",
+        "description": "Implement the core physics logic for entity movement, including gravity and velocity.",
+        "details": "Create a physics package. In the application's `Update` loop, iterate through entities and apply a constant gravity force to their velocity. Update each entity's position based on its velocity. Implement boundary checks to keep entities within the simulation pane.",
+        "testStrategy": "Write unit tests for the physics calculations (e.g., applying gravity over time). Visually inspect the simulation to see if entities fall downwards and move according to their velocity.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Create ASCII Rendering System for Entities",
+        "description": "Develop the rendering logic to display entities within the simulation pane.",
+        "details": "In the `View` method for the simulation pane, iterate through all entities and render them at their respective positions. Use 'O' or '●' for spheres and custom characters for sprites. Apply colors using Lip Gloss based on entity properties.",
+        "testStrategy": "Add a few static entities to the model and verify they are rendered correctly in the simulation pane. Check if colors and characters match the entity properties.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Integrate Harmonica for Smooth Animation",
+        "description": "Use the Harmonica library to animate entity movements for a smooth, non-flickering display.",
+        "details": "Replace direct position updates in the physics engine with Harmonica spring animations. The physics engine will set the target position, and Harmonica will handle the interpolation. Aim for a target frame rate of 30-60 FPS using a Bubble Tea `Tick` message.",
+        "testStrategy": "Visually compare the animation with and without Harmonica. The movement should be noticeably smoother. Monitor an FPS counter to ensure performance targets are met.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Build Interactive Control Pane UI",
+        "description": "Create the user interface in the control pane using the Bubbles library for components.",
+        "details": "Add interactive buttons for 'Add Sphere', 'Add Sprite', 'Clear All', 'Pause/Resume', and 'Reset'. Lay them out horizontally in the bottom 30% of the screen. This UI can be a separate Bubble Tea model.",
+        "testStrategy": "Visually inspect the control pane to ensure all buttons are present and correctly labeled. The application should not crash when interacting with the (currently non-functional) buttons.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Core Control Logic and Shortcuts",
+        "description": "Wire up the control pane buttons and keyboard shortcuts to manipulate the simulation.",
+        "details": "Implement the logic for each button: 'Add Sphere'/'Add Sprite' should create a new entity. 'Clear All' removes all entities. 'Pause/Resume' toggles physics updates. 'Reset' clears and re-initializes. Map keys 'a', 's', 'c', 'p', 'r' to these actions.",
+        "testStrategy": "Press each button and corresponding keyboard shortcut. Verify the simulation state changes as expected (e.g., entities are added/removed, simulation pauses/resumes).",
+        "priority": "high",
+        "dependencies": [
+          2,
+          6
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Collision Detection",
+        "description": "Add collision detection between entities and between entities and the simulation boundaries.",
+        "details": "Implement two types of collision: 1) Boundary collision, where entities bounce off the walls of the simulation pane. 2) Entity-entity collision, where entities bounce off each other, conserving momentum. Use Harmonica springs to create a bounce effect.",
+        "testStrategy": "Write unit tests for collision detection logic. Visually test by creating multiple entities and observing their interactions with each other and the walls. They should bounce realistically.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          5
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Parameter Controls",
+        "description": "Add UI controls for adjusting simulation parameters like gravity, entity size, and color.",
+        "details": "In the control pane, add components (sliders, inputs, or selectors) to modify the gravity strength, the size of newly created entities, and the color of newly created entities. These controls should update the main model's state.",
+        "testStrategy": "Adjust the gravity slider and observe changes in entity acceleration. Change the size/color selectors and add new entities to verify they are created with the selected properties.",
+        "priority": "low",
+        "dependencies": [
+          7
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Final Polish, Testing, and Documentation",
+        "description": "Perform comprehensive testing, optimize performance, improve styling, and write final documentation.",
+        "details": "Refine visual styles with Lip Gloss. Profile the application to identify and fix performance bottlenecks, ensuring it handles 100+ entities smoothly. Write unit tests for physics and entity logic. Create a comprehensive README.md.",
+        "testStrategy": "Run the application with a large number of entities (100+) to check for lag or high CPU usage. Review the code for clarity and adherence to Go best practices. Have another developer follow the README to build and run the project.",
+        "priority": "medium",
+        "dependencies": [
+          8,
+          9
+        ],
+        "status": "done",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Performance Testing & Optimization",
+            "description": "Test app performance with 100+ entities and optimize bottlenecks",
+            "details": "- Create performance test scenario with 100+ entities\n- Profile CPU usage and memory consumption  \n- Identify bottlenecks in physics calculations, rendering, or animation\n- Optimize entity management and collision detection\n- Ensure smooth 60 FPS even with many entities\n- Add performance monitoring tools",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 2,
+            "title": "Visual Polish & Styling",
+            "description": "Improve visual appearance and polish UI elements",
+            "details": "- Enhance color schemes and contrast\n- Improve border styles and spacing\n- Polish button hover/focus states\n- Add visual feedback for parameter changes\n- Improve status displays and formatting\n- Add visual flourishes and animations\n- Ensure consistent styling across all UI elements",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 3,
+            "title": "Comprehensive Unit Testing",
+            "description": "Write thorough unit tests for all core functionality",
+            "details": "- Test physics engine functions (gravity, collisions, boundaries)\n- Test entity management (add, remove, update entities)\n- Test animation system integration\n- Test parameter controls (gravity, size, color cycling)\n- Test control panel interactions\n- Add edge case testing (empty simulation, max entities, etc.)\n- Ensure test coverage > 80%\n- Add integration tests for complete workflows",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 4,
+            "title": "Comprehensive Documentation",
+            "description": "Create detailed README and documentation",
+            "details": "- Write comprehensive README.md with:\n  * Project description and features\n  * Installation and build instructions  \n  * Usage guide and controls\n  * Architecture overview\n  * Screenshots/GIFs of the app in action\n- Add inline code documentation\n- Document all public APIs and interfaces\n- Create troubleshooting section\n- Add development setup guide\n- Include performance tips and limitations",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 5,
+            "title": "Code Quality & Best Practices",
+            "description": "Review and improve code quality following Go best practices",
+            "details": "- Run go vet, golint, and gofmt on all code\n- Review code for Go idioms and best practices\n- Optimize imports and remove unused code\n- Add proper error handling where missing\n- Improve variable and function naming consistency  \n- Add package-level documentation\n- Ensure thread safety where needed\n- Review for potential memory leaks\n- Add build constraints and tags if needed",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 6,
+            "title": "Responsive Layout & Zoom Adaptivity",
+            "description": "Improve app responsiveness and layout adaptation for different terminal sizes and zoom levels",
+            "details": "- Implement adaptive control panel sizing based on terminal dimensions\n- Add breakpoints for different screen sizes (small, medium, large terminals)\n- Optimize control panel layout to use less vertical space at higher zoom levels\n- Add responsive button arrangement (horizontal vs vertical layouts)\n- Implement smart text truncation and compact display modes\n- Add terminal size detection and adaptive UI scaling\n- Ensure simulation area gets priority for space allocation\n- Test across different zoom levels and terminal window sizes",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 7,
+            "title": "Fix Missing Entity Count Display",
+            "description": "Add entity count display to the UI so users can see how many entities are currently in the simulation",
+            "details": "The UI tests revealed that users cannot see the current number of entities in the simulation. Need to add \"Entities: X\" display to the UI, likely in the status area.",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 8,
+            "title": "Fix Responsive Layout for Small Terminals",
+            "description": "Improve responsive layout to handle narrow terminal widths without content overflow",
+            "details": "UI tests show that content overflows on terminals narrower than expected width. Need to implement proper responsive layout that truncates or wraps content appropriately for small screens.",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 9,
+            "title": "Add FPS Display to UI",
+            "description": "Add FPS (frames per second) display to show performance information to users",
+            "details": "UI tests expect an FPS display that currently doesn't exist. Users should be able to see the current frame rate to understand performance, especially useful during performance testing.",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 10,
+            "title": "Fix UI Content Width Management",
+            "description": "Ensure all UI content respects terminal width boundaries and doesn't overflow",
+            "details": "Multiple UI tests fail due to content lines being longer than terminal width. Need to implement proper width management across all UI components to prevent overflow and ensure clean display on any terminal size.",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 11,
+            "title": "Fix Critical UI Test Failures",
+            "description": "Fix multiple failing UI tests related to button display and keyboard shortcuts",
+            "details": "Multiple UI tests are failing due to inconsistent button display and keyboard shortcut functionality:\n\n**TestCompleteUserWorkflowValidation Failures:**\n- Pause button not showing \"Pause\" text when simulation is not paused (snapshots 0, 1, 2)\n- Resume button not showing \"Resume\" text when simulation is paused (snapshots 3, 4)\n- Entity count display issues in UI snapshots 1-4\n\n**TestKeyboardAccessibilityComprehensive Failures:**\n- 'c' (clear) keyboard shortcut not causing observable UI changes\n- 'x' (color cycle) keyboard shortcut not causing observable UI changes\n\n**Root Causes Identified:**\n1. Pause/Resume button text inconsistency between different rendering modes (renderTestCompatibleControls vs renderMinimalControls vs full control panel)\n2. The control panel UpdatePauseButton functionality may not be called consistently\n3. Parameter changes (color cycling) not being reflected in UI display immediately\n4. Clear action may not be triggering UI refresh properly\n\n**Technical Details:**\n- Tests run with 80x24 terminal size\n- Uses CaptureUISnapshot to detect state/UI changes\n- Expects observable changes in ViewOutput when keyboard shortcuts are pressed\n- Button text must match pause state (Pause vs Resume)\n\n**Files Involved:**\n- main.go (keyboard handling, UI rendering)\n- controls.go (button state management)  \n- ui_test.go (test expectations)\n\n**Expected Fix Areas:**\n1. Ensure consistent pause/resume button text across all rendering modes\n2. Fix color cycling to be immediately visible in UI\n3. Fix clear action to show immediate UI changes\n4. Verify parameter display updates work correctly",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          },
+          {
+            "id": 12,
+            "title": "Fix TestAnimationProgressValidation Failure",
+            "description": "Fix failing UI test that expects animation to cause visual changes over time",
+            "details": "TestAnimationProgressValidation is failing with error \"Animation should cause visual changes over time\". The test adds an entity, simulates time passing with multiple tick messages, and expects the UI output to change between initial and final snapshots. Need to investigate why animations aren't causing observable UI changes in the test environment.",
+            "status": "done",
+            "dependencies": [],
+            "parentTaskId": 10
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-17T05:45:21.442Z",
+      "updated": "2025-07-21T06:02:11.686Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
