@@ -56,7 +56,7 @@ const (
 	ControlRatio       = 0.3                    // Control pane takes 30% of screen
 	
 	// Entity limits
-	DefaultEntityLimit = 50                     // Default maximum entities
+	DefaultEntityLimit = 1000                   // Default maximum entities
 	StressTestEntities = 20                     // Number of entities added during stress test
 	
 	// Terminal size constants
@@ -398,12 +398,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.runStressTest()
 			return m, nil
 		case "l":
-			// Toggle entity limit (50 -> 200 -> 1000 for stress testing)
+			// Toggle entity limit (1000 -> 2000 -> 5000 for stress testing)
 			switch m.maxEntityLimit {
-			case 50:
-				m.maxEntityLimit = 200
-			case 200:
-				m.maxEntityLimit = 1000
+			case 1000:
+				m.maxEntityLimit = 2000
+			case 2000:
+				m.maxEntityLimit = 5000
 			default:
 				m.maxEntityLimit = DefaultEntityLimit
 			}

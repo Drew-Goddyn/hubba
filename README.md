@@ -38,7 +38,7 @@ A terminal-based application built with [Bubble Tea](https://github.com/charmbra
 │ ○       ◆       ●◆     ●○    ■   ●     ■        ●   ◆   ○   ●●                  │
 │                                                                                 │
 │                                                                                 │
-│ ⚙️ Gravity: 25.0 | 🏀 Bounce: 0.70 | 📊 FPS: 60.0 | 🎯 Limit: 50            │
+│ ⚙️ Gravity: 25.0 | 🏀 Bounce: 0.70 | 📊 FPS: 60.0 | 🎯 Limit: 1000          │
 │                                                                                 │
 │ Entities: 40 FPS: 60.0                                                         │
 └─────────────────────────────────────────────────────────────────────────────────┘
@@ -58,7 +58,7 @@ A terminal-based application built with [Bubble Tea](https://github.com/charmbra
 │  ●   ○   ■   ●   ■      ●○●   ●   ○   ■      ●●   ●   ◆   ●   ○   ●   ○         │
 │ ○       ◆       ●◆     ●○    ■   ●     ■        ●   ◆   ○   ●●                  │
 │                                                                                 │
-│ ⚙️ Gravity: 25.0 | 🏀 Bounce: 0.70 | 📊 FPS: 60.0 | 🎯 Limit: 50            │
+│ ⚙️ Gravity: 25.0 | 🏀 Bounce: 0.70 | 📊 FPS: 60.0 | 🎯 Limit: 1000          │
 │ 📐 Terminal: 103x46 | Sim: 97x32 | Ctrl: 97x6                                 │
 │                                                                                 │
 │ Entities: 40 FPS: 60.0                                                         │
@@ -158,7 +158,7 @@ A terminal-based application built with [Bubble Tea](https://github.com/charmbra
 |-----|---------|-------------|
 | `f` | Performance Mode | Shows FPS, limits, and system info |
 | `t` | Stress Test | Adds 20 entities rapidly |
-| `l` | Entity Limit | Cycles between 50 → 200 → 1000 limits |
+| `l` | Entity Limit | Cycles between 1000 → 2000 → 5000 limits |
 
 ### Navigation
 - **Tab/Shift+Tab**: Navigate UI elements
