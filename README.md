@@ -1,3 +1,9 @@
+<p align="center">
+  <video src="assets/example.mov" controls playsinline muted loop width="800">
+    Your browser does not support the video tag. Here is a <a href="assets/example.mov">link to the video</a>.
+  </video>
+</p>
+
 # Terminal Application with Entity Management and Animation
 
 A terminal-based application built with [Bubble Tea](https://github.com/charmbracelet/bubbletea) that implements entity management, collision detection, and smooth animations.
