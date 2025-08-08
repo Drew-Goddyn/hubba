@@ -1,7 +1,12 @@
 <p align="center">
-  <video src="assets/example.mov" controls playsinline muted loop width="800">
-    Your browser does not support the video tag. Here is a <a href="assets/example.mov">link to the video</a>.
-  </video>
+  <a href="assets/example.mp4">
+    <img src="assets/example.gif" alt="Demo video preview" width="800" />
+  </a>
+  <br/>
+  <sub>
+    Click the preview to watch the MP4. If it doesn't load, use the direct
+    <a href="assets/example.mp4">link</a>.
+  </sub>
 </p>
 
 # Terminal Application with Entity Management and Animation
